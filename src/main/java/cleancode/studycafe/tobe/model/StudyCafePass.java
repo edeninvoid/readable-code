@@ -6,12 +6,14 @@ public class StudyCafePass {
     private final int duration;
     private final int price;
     private final double discountRate;
+    private StudyCafeLockerPass lockerPass;
 
     private StudyCafePass(StudyCafePassType passType, int duration, int price, double discountRate) {
         this.passType = passType;
         this.duration = duration;
         this.price = price;
         this.discountRate = discountRate;
+        this.lockerPass = null;
     }
 
     public static StudyCafePass of(StudyCafePassType passType, int duration, int price, double discountRate) {
@@ -32,6 +34,22 @@ public class StudyCafePass {
 
     public double getDiscountRate() {
         return discountRate;
+    }
+
+    public boolean isAvailableLockerPass() {
+        return passType == StudyCafePassType.FIXED;
+    }
+
+    public boolean hasLockerPass() {
+        return lockerPass != null;
+    }
+
+    public StudyCafeLockerPass getLockerPass() {
+        return lockerPass;
+    }
+
+    public void setLockerPass(StudyCafeLockerPass lockerPass) {
+        this.lockerPass = lockerPass;
     }
 
     public String display() {
