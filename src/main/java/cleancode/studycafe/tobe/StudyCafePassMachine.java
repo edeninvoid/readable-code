@@ -28,6 +28,9 @@ public class StudyCafePassMachine {
             StudyCafePass selectedPass = selectedPassByPassTypeFrom(studyCafePassType);
             StudyCafeLockerPass lockerPass = findMatchingLockerPass(selectedPass);
 
+            if (lockerPass == null) {
+                outputHandler.showSimpleMessage("이용 가능한 사물함이 없습니다.");
+            }
             if (lockerPass != null && selectedPass.isAvailableLockerPass()) {
                 outputHandler.askLockerPass(lockerPass);
                 if (inputHandler.getLockerSelection()) {
